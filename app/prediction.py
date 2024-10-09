@@ -51,5 +51,3 @@ def pred_page():
         else:
             st.write("✅ This transaction is predicted to be non-fraudulent.")
 
-# Call the prediction page function
-pred_page()
