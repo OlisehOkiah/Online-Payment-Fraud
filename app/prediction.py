@@ -11,7 +11,7 @@ model_path = os.path.join(os.path.dirname(__file__), 'model.pkl')
 def load_model():
     # model_path = os.path.join(os.getcwd(), 'model.pkl')
     try:
-        with open('app/model.pkl', "rb") as file:  # Use relative path
+        with open('model.pkl', "rb") as file:  # Use relative path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
