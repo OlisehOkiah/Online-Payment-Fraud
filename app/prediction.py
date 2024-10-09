@@ -1,10 +1,14 @@
-# Streamlit app
 import streamlit as st
 import numpy as np
 import pickle
 import os
 
+# Use the full path or ensure the relative path is correct
 model_path = os.path.join(os.getcwd(), 'model.pkl')
+
+# Debug: Print current working directory and model path
+print(f"Current working directory: {os.getcwd()}")
+print(f"Model path: {model_path}")
 
 @st.cache_resource
 def load_model():
@@ -13,14 +17,16 @@ def load_model():
             model = pickle.load(file)
         return model
     except FileNotFoundError:
-        st.error("Model file not found. Please ensure model.pkl is in the correct directory.")
+        st.error(f"Model file not found at: {model_path}")
         return None  # Return None or handle appropriately if the model isn't found
-
-
 
 model = load_model()
 
 def pred_page():
+    if model is None:
+        st.error("Model could not be loaded. Please check the logs.")
+        return
+    
     st.title("Fraud Detection: Input Transaction Details")
     
     # Input values for prediction
@@ -48,4 +54,5 @@ def pred_page():
         else:
             st.write("✅ This transaction is predicted to be non-fraudulent.")
 
-
+# Call the prediction page function
+pred_page()
