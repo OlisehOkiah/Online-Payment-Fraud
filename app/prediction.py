@@ -5,10 +5,14 @@ import pickle
 
 @st.cache_resource
 def load_model():
-    # Use raw string for the path or forward slashes
-    with open("model.pkl", "rb") as file:
-        model = pickle.load(file)
-    return model
+    try:
+        with open("model.pkl", "rb") as file:  # Use relative path
+            model = pickle.load(file)
+        return model
+    except FileNotFoundError:
+        st.error("Model file not found. Please ensure model.pkl is in the correct directory.")
+        return None  # Return None or handle appropriately if the model isn't found
+
 
 
 model = load_model()
