@@ -5,7 +5,7 @@ import pickle
 
 @st.cache_resource
 def load_model():
-    with open("model.pkl", "rb") as file:
+    with open("C:\Users\DELL\Desktop\botega\app\model.pkl", "rb") as file:
         model = pickle.load(file)
     return model
 

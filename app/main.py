@@ -3,6 +3,7 @@ from streamlit_option_menu import option_menu
 st.set_page_config(page_title="Online Payment Fraud Detection", layout="centered")
 from home import home_page
 from prediction import pred_page
+
 with st.sidebar:
     selected=option_menu(
         menu_title=None,
