@@ -1,11 +1,12 @@
 # Streamlit app
 import streamlit as st
-import numpy as np 
+import numpy as np
 import pickle
 
 @st.cache_resource
 def load_model():
-    with open("C:\Users\DELL\Desktop\botega\app\model.pkl", "rb") as file:
+    # Use raw string for the path or forward slashes
+    with open(r"C:/Users/DELL/Desktop/botega/app/model.pkl", "rb") as file:
         model = pickle.load(file)
     return model
 
@@ -13,6 +14,7 @@ model = load_model()
 
 def pred_page():
     st.title("Fraud Detection: Input Transaction Details")
+    
     # Input values for prediction
     step = st.number_input("Step", min_value=1, max_value=743, value=1)
     amount = st.number_input("Amount", min_value=0.0, max_value=1e6, value=1000.0)
@@ -23,6 +25,7 @@ def pred_page():
     oldbalanceDest = st.slider("Old Balance (Destination)", min_value=0.0, max_value=1e6, value=0.0)
     newbalanceDest = st.slider("New Balance (Destination)", min_value=0.0, max_value=1e6, value=0.0)
     balance_diff_dest = oldbalanceDest - newbalanceDest
+
     # Predict button
     if st.button('Predict Fraud'):
         # Prepare input data
@@ -37,4 +40,4 @@ def pred_page():
         else:
             st.write("✅ This transaction is predicted to be non-fraudulent.")
 
-pred_page()
+
