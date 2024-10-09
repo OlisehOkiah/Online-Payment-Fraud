@@ -8,13 +8,12 @@ model_path = os.path.join(os.path.dirname(__file__), 'model.pkl')
 
 @st.cache_resource
 def load_model():
-    try:
         with open(model_path, "rb") as file:  # Use the correct path
             model = pickle.load(file)
         return model
-    except FileNotFoundError:
-        st.error("Model file not found. Please ensure model.pkl is in the correct directory.")
-        return None  # Return None or handle appropriately if the model isn't found
+    # except FileNotFoundError:
+    #     st.error("Model file not found. Please ensure model.pkl is in the correct directory.")
+    #     return None  # Return None or handle appropriately if the model isn't found
 
 model = load_model()
 
