@@ -6,9 +6,10 @@ import pickle
 @st.cache_resource
 def load_model():
     # Use raw string for the path or forward slashes
-    with open(r"C:/Users/DELL/Desktop/botega/app/model.pkl", "rb") as file:
+    with open("model.pkl", "rb") as file:
         model = pickle.load(file)
     return model
+
 
 model = load_model()
 
