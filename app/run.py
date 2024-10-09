@@ -11,9 +11,9 @@ if 'selected' not in st.session_state:
 # Load the model function
 @st.cache_resource
 def load_model():
-    model_path = os.path.join(os.getcwd(), 'model.pkl')
+    # model_path = os.path.join(os.getcwd(), 'model.pkl')
     try:
-        with open(model_path, "rb") as file:  # Use relative path
+        with open('app/model.pkl', "rb") as file:  # Use relative path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
