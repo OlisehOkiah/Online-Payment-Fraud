@@ -4,8 +4,6 @@ from PIL import Image
 from prediction import pred_page
 
     
-
-# home.py
 def home_page():
     st.title("Welcome to the Online Payment Fraud Detection App! 🎉")
 
