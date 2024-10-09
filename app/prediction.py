@@ -6,7 +6,6 @@ import os
 
 # Debug: Print current working directory and model path
 print(f"Current working directory: {os.getcwd()}")
-print(f"Model path: {model_path}")
 
 @st.cache_resource
 def load_model():
