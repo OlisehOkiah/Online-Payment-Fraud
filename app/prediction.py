@@ -10,7 +10,7 @@ print(f"Current working directory: {os.getcwd()}")
 @st.cache_resource
 def load_model():
     try:
-        with open('C:\Users\DELL\Desktop\botega\app\model.pkl', "rb") as file:  # Use relative path
+        with open('app\model.pkl', "rb") as file:  # Use relative path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
