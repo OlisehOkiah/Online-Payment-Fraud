@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
+import random
 
 st.set_page_config(page_title="Online Payment Fraud Detection", layout="centered")
 from home import home_page
@@ -20,8 +21,7 @@ with st.sidebar:
     )
 
     # Update session state when an option is selected from the sidebar
-    if selected:
-        st.session_state.selected = selected
+    st.session_state.selected = selected
 
 # Render the selected page
 if st.session_state.selected == "Home":
