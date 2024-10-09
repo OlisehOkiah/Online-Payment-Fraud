@@ -1,9 +1,12 @@
 import streamlit as st
 import random
 from PIL import Image
+from prediction import pred_page
 
+    
+
+# home.py
 def home_page():
-    # Set the page title
     st.title("Welcome to the Online Payment Fraud Detection App! 🎉")
 
     st.markdown(
@@ -87,11 +90,9 @@ def home_page():
     elif quiz_question2:
         st.error("Try again! Credit card fraud is very common in online transactions.")
 
-    # A button to start predicting
-    st.write("Want to test the fraud detection model? 🚀")
+    # A button to switch to the prediction page
     if st.button("Go to Predictions"):
-        st.write("Switch to the 'Prediction' page from the sidebar to start!")
-    
+        st.session_state.selected = "Prediction"  # Update session state to go to Prediction
+
     # Footer message
     st.write("Enjoy your experience with fraud detection! 💻🔍")
-    st.image("istockphoto-1603729912-612x612.jpg")
