@@ -3,8 +3,6 @@ import numpy as np
 import pickle
 import os
 
-# Use the full path or ensure the relative path is correct
-model_path = os.path.join(os.getcwd(), 'model.pkl')
 
 # Debug: Print current working directory and model path
 print(f"Current working directory: {os.getcwd()}")
@@ -13,11 +11,11 @@ print(f"Model path: {model_path}")
 @st.cache_resource
 def load_model():
     try:
-        with open(model_path, "rb") as file:  # Use relative path
+        with open('C:\Users\DELL\Desktop\botega\app\model.pkl', "rb") as file:  # Use relative path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
-        st.error(f"Model file not found at: {model_path}")
+        st.error(f"Model file not found")
         return None  # Return None or handle appropriately if the model isn't found
 
 model = load_model()
