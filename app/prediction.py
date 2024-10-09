@@ -3,27 +3,22 @@ import numpy as np
 import pickle
 import os
 
-
-# Debug: Print current working directory and model path
-print(f"Current working directory: {os.getcwd()}")
+# Update the model_path to use __file__ to get the current script's directory
+model_path = os.path.join(os.path.dirname(__file__), 'model.pkl')
 
 @st.cache_resource
 def load_model():
     try:
-        with open('app\model.pkl', "rb") as file:  # Use relative path
+        with open(model_path, "rb") as file:  # Use the correct path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
-        st.error(f"Model file not found")
+        st.error("Model file not found. Please ensure model.pkl is in the correct directory.")
         return None  # Return None or handle appropriately if the model isn't found
 
 model = load_model()
 
 def pred_page():
-    if model is None:
-        st.error("Model could not be loaded. Please check the logs.")
-        return
-    
     st.title("Fraud Detection: Input Transaction Details")
     
     # Input values for prediction
@@ -43,11 +38,13 @@ def pred_page():
         input_data = np.array([[step, amount, oldbalanceOrg, newbalanceOrig, balance_diff_org, balance_diff_dest]])
         
         # Predict using the trained model
-        prediction = model.predict(input_data)
-        
-        # Output the prediction result
-        if prediction[0] == 1:
-            st.write("⚠️ This transaction is predicted to be fraudulent!")
+        if model is not None:  # Ensure the model is loaded
+            prediction = model.predict(input_data)
+            # Output the prediction result
+            if prediction[0] == 1:
+                st.write("⚠️ This transaction is predicted to be fraudulent!")
+            else:
+                st.write("✅ This transaction is predicted to be non-fraudulent.")
         else:
-            st.write("✅ This transaction is predicted to be non-fraudulent.")
+            st.error("Model is not loaded properly. Please check the file path.")
 
