@@ -2,11 +2,14 @@
 import streamlit as st
 import numpy as np
 import pickle
+import os
+
+model_path = os.path.join(os.getcwd(), 'model.pkl')
 
 @st.cache_resource
 def load_model():
     try:
-        with open("model.pkl", "rb") as file:  # Use relative path
+        with open(model_path, "rb") as file:  # Use relative path
             model = pickle.load(file)
         return model
     except FileNotFoundError:
